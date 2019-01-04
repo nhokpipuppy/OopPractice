@@ -18,14 +18,14 @@ class VietnamNet extends Total
     public function takeTitle()
     {
         $f = parent::deleteAfter($this->search3, $this->deleteGarbage());
-        return $f;
+        return strip_tags($f);
     }
 
     public function takeContent()
     {   
         $gString = str_replace( $this->takeTitle(),' ', $this->deleteGarbage());
         $gString = parent::deleteBefore('class="ArticleContent">', $gString);
-        return $gString;
+        return strip_tags($gString);
     }
 }
 ?>

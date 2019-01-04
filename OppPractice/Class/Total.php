@@ -30,10 +30,6 @@ class Total
         }
 }
 
-
-
-
-
 // $a = new VietnamNet();
 // $a->url = 'https://vietnamnet.vn/vn/thoi-su/chinh-tri/cong-an-phai-luon-giu-minh-trong-sach-vung-vang-khong-bi-sa-nga-499400.html';
 // echo $a->takeTitle();

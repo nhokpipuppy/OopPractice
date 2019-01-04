@@ -22,7 +22,7 @@ class VnExpress extends Total
     public function takeTitle()
     {
         $f = parent::deleteBefore($this->search3, $this->deleteGarbage());
-        return $f;
+        return strip_tags($f);
     }
 
     public function takeContent()
@@ -37,9 +37,9 @@ class VnExpress extends Total
             $h = parent::deleteAfter($this->search6,$h);
             // xóa 1 vài chi tiết phụ 
             $gString = str_replace( $h,' ', $gString);
-            return $gString;
+            return strip_tags($gString);
         }
-        return $gString;
+        return strip_tags($gString);
     }
 }
 ?>
