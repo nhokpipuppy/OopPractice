@@ -6,7 +6,7 @@ class DB_driver
      // $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
 
     // Hàm Kết Nối
-    function connect()
+    public function connect()
     {
         // Nếu chưa kết nối thì thực hiện kết nối
         if (!$this->__conn){
@@ -18,7 +18,7 @@ class DB_driver
     }
  
     // Hàm Ngắt Kết Nối
-    function dis_connect(){
+    public function dis_connect(){
         // Nếu đang kết nối thì ngắt
         if ($this->__conn){
             mysqli_close($this->__conn);
@@ -26,7 +26,7 @@ class DB_driver
     }
  
     // Hàm Insert add
-    function insert($table, $data) //data sẽ ở dạng array
+    public function insert($table, $data) //data sẽ ở dạng array
     {
         // Kết nối
         $this->connect();
@@ -49,7 +49,7 @@ class DB_driver
     }
  
     // Hàm Update edit
-    function update($table, $data, $where)
+    public function update($table, $data, $where)
     {
         // Kết nối
         $this->connect();
@@ -67,7 +67,7 @@ class DB_driver
     }
  
     // Hàm delete
-    function remove($table, $where){
+    public function remove($table, $where){
         // Kết nối
         $this->connect();
          
@@ -77,7 +77,7 @@ class DB_driver
     }
  
     // Hàm lấy danh sách
-    function get_list($sql)
+    public function get_list($sql)
     {
         // Kết nối
         $this->connect();
@@ -96,7 +96,7 @@ class DB_driver
         return $return;
     }
     // ham đếm để trong trg hợp xét xem dữ liệu đã tồn tại hay chưa nếu tồn tại >0 chưa thì < 0
-    function num_row($sql){
+    public function num_row($sql){
         $this->connect();
         $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
         $result=mysqli_query($link,$sql);
@@ -105,7 +105,7 @@ class DB_driver
     }
  
     // Hàm lấy 1 record dùng trong trường hợp lấy chi tiết tin
-    function get_row($sql)
+    public function get_row($sql)
     {
         // Kết nối
         $this->connect();
