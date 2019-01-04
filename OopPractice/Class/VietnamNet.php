@@ -1,6 +1,6 @@
 <?php
-include('Total.php');
-class VietnamNet extends Total 
+include('TakeCode.php');
+class VietnamNet extends TakeCode
 {
     private $search1 = 'class="title f-22 c-3e">';
     private $search2 = '<div class="inner-article"';

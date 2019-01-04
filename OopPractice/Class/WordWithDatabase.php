@@ -1,5 +1,5 @@
 <?php
-class DB_driver 
+class WordWithDatabase
 {
     // Biến lưu trữ kết nối
     private $__conn;
@@ -11,14 +11,16 @@ class DB_driver
         // Nếu chưa kết nối thì thực hiện kết nối
         if (!$this->__conn){
             // Kết nối
-            $this->__conn = new mysqli('localhost', 'root', '', 'ControlData') or die ('Lỗi kết nối');
+            $this->__conn = new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
             // Xử lý truy vấn UTF8 để tránh lỗi font
-            mysqli_query($this->__conn, "SET NAMES UTF8");
+            
+            //mysqli_query($this->__conn, 'SET NAMES UTF8');
+            $this->__conn->set_charset("utf8");
         }
     }
  
     // Hàm Ngắt Kết Nối
-    public function dis_connect(){
+    public function disconnect(){
         // Nếu đang kết nối thì ngắt
         if ($this->__conn){
             mysqli_close($this->__conn);
@@ -41,9 +43,9 @@ class DB_driver
             $field_list .= ",$key";
             $value_list .= ",'".addslashes($value)."'";
         }
- 
+        var_dump($value_list.'thấy chưa');
         // Vì sau vòng lặp các biến $field_list và $value_list sẽ thừa một dấu , nên ta sẽ dùng hàm trim để xóa đi
-        $sql = 'INSERT INTO '.$table. '('.trim($field_list, ',').') VALUES ('.trim($value_list, ',').')';
+        $sql = 'INSERT INTO '.$table. '('.trim($field_list, ',').') VALUES (N'.trim($value_list, ',').')';
  
         return mysqli_query($this->__conn, $sql);
     }
@@ -77,11 +79,11 @@ class DB_driver
     }
  
     // Hàm lấy danh sách
-    public function get_list($sql)
+    public function getList($sql)
     {
         // Kết nối
         $this->connect();
-        $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
+        $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
         $result = mysqli_query($link, $sql);
         if (!$result){
             die ('Câu truy vấn bị sai');
@@ -96,20 +98,20 @@ class DB_driver
         return $return;
     }
     // ham đếm để trong trg hợp xét xem dữ liệu đã tồn tại hay chưa nếu tồn tại >0 chưa thì < 0
-    public function num_row($sql){
+    public function numRow($sql){
         $this->connect();
-        $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
+        $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
         $result=mysqli_query($link,$sql);
         $num_row=mysqli_num_rows($result);
         return $num_row;
     }
  
     // Hàm lấy 1 record dùng trong trường hợp lấy chi tiết tin
-    public function get_row($sql)
+    public function getRow($sql)
     {
         // Kết nối
         $this->connect();
-         // $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
+         // $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
         $result = mysqli_query($this->__conn, $sql);
         if (!$result){
             die ('Câu truy vấn bị sai');

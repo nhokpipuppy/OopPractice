@@ -1,6 +1,6 @@
 <?php
-include('Total.php');
-class VnExpress extends Total
+include('TakeCode.php');
+class VnExpress extends TakeCode
 {
     private $search1 = 'class="title_news_detail mb10"';
     private $search2 = '</article>';
