@@ -1,7 +1,6 @@
 
 <?php
-include('Class.php');
-include('DB_driver.php');
+include('__autoload.php');
 // $a = new Total();
 // $a->url = 'https://vnexpress.net/thoi-su/bo-quoc-phong-sap-xep-lai-hang-loat-don-vi-3863006.html';
 // $b=$a->takeCodeWebsite();
@@ -51,18 +50,19 @@ function deleteAfter($search, $content)
             $result = explode($search, $content);
             return $result[0];
         }
+
 function deleteBefore($search, $content)
         {
             $result = explode($search, $content);
             return $result[1];
         }
+
 $a = new VietnamNet();
 $a->url = 'https://vietnamnet.vn/vn/giai-tri/the-gioi-sao/nhan-sac-that-cua-cac-hoa-hau-viet-khi-khong-son-phan-499272.html';
 var_dump($a->takeTitle()) ;
 echo '<br>';
 $content = $a->takeContent();
 // $content = str_replace('<p', ' ', $content);
-
 $content = deleteBefore('alt="" />', $content);
 $content = deleteBefore('</p>', $content);
 $content = deleteAfter('<p class="t-j">', $content);

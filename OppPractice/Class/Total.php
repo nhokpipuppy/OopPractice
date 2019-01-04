@@ -2,6 +2,7 @@
 class Total
 {
     public $url;
+    
     public function takeCodeWebsite()
     {
         $ch = curl_init();
@@ -15,6 +16,7 @@ class Total
         // Trả về code
         return $result;
     }
+
     public function deleteAfter($search, $content)
         {
             $result = explode($search, $content);

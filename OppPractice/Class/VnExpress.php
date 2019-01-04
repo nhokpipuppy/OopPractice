@@ -10,7 +10,6 @@ class VnExpress extends Total
     public $search6 = '/table>';
     
     public function deleteGarbage() {
-        
         $b = parent::takeCodeWebsite();
         // xóa đoạn code bên trên tiêu đề
         $c = parent::deleteBefore($this->search1, $b);

@@ -3,7 +3,7 @@
 ?>
 <table border="1">
     <tr>
-         <td style=" text-align:center; font-weight:bold; color: blue;">Mot so link test</td>
+         <td style=" text-align:center; font-weight:bold; color: blue;">Mot so link test tham khảo</td>
     </tr>
     <tr>
          <td>https://vietnamnet.vn/vn/thoi-su/chinh-tri/giam-doc-so-gtvt-tp-hcm-duoc-bo-nhiem-lam-truong-ban-quan-ly-duong-sat-do-thi-499478.html</td>
@@ -18,6 +18,7 @@
          <td>https://vnexpress.net/the-gioi/my-canh-bao-cong-dan-than-trong-khi-toi-trung-quoc-3863310.html</td>
     </tr>
 </table>
+
 <form action="" method="post">
     <input type="text" name='linkVnExpress' placeholder='Nhập url VnExpress tại đây' >
     <input type="submit" name='submit1' value='Tách Dữ liệu'>
@@ -27,10 +28,11 @@
     <input type="text" name='linkVietnamNet' placeholder='Nhập url VietnamNet tại đây' >
     <input type="submit" name='submit2' value='Tách Dữ liệu'>
 </form>
+
 <?php
  if (isset($_POST['submit1'])){
      $a = $_POST['linkVnExpress'];
-    $b = strpos($a, 'https://vnexpress.net/');
+     $b = strpos($a, 'https://vnexpress.net/');
     if ($b === false) {
         echo '<span style="color:red;font-weight:bold">Link ban nhap khong phai o trang vnexpress</span>';
     } else {
@@ -41,31 +43,32 @@
         $content = $c->takeContent();
         // echo $content;
         $data = array(
-            'Title'=> $title,
-            'Content'=> $content,
+            'Title' => $title,
+            'Content' => $content,
         );
         $d = new DB_driver();
-        $d->insert('data', $data);
+        $d->insert('data_vnexpress', $data);
             }
  }
- if (isset($_POST['submit2'])){
+
+ if (isset($_POST['submit2'])) {
     $a = $_POST['linkVietnamNet'];
-   $b = strpos($a, 'https://vietnamnet.vn/');
+    $b = strpos($a, 'https://vietnamnet.vn/');
    if ($b === false) {
        echo '<span style="color:red;font-weight:bold">Link ban nhap khong phai o trang VietnamNet</span>';
    } else {
        $c = new VietnamNet();
-       $c->url = $a;
-       $title = $c->takeTitle();
+       $c -> url = $a;
+       $title = $c -> takeTitle();
        // echo $title;
-       $content = $c->takeContent();
+       $content = $c -> takeContent();
        // echo $content;
        $data = array(
-           'Title'=> $title,
-           'Content'=> $content,
+           'Title' => $title,
+           'Content' => $content,
        );
        $d = new DB_driver();
-       $d->insert('data', $data);
+       $d -> insert('data_vietnamnet', $data);
            }
 }
 ?>
