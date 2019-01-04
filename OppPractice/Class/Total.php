@@ -3,27 +3,27 @@ class Total
 {
     public $url;
     
-    public function takeCodeWebsite()
+    protected function takeCodeWebsite()
     {
         $ch = curl_init();
-        // Cấu hình cho CURL
+        // Config  for CURL
         curl_setopt($ch, CURLOPT_URL, $this->url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        // Thực thi CURL
+        // Run CURL
         $result =curl_exec($ch);
-        // Ngắt CURL, giải phóng
+        // Stop CURL, release
         curl_close($ch);
-        // Trả về code
+        // return code
         return $result;
     }
 
-    public function deleteAfter($search, $content)
+    protected function deleteAfter($search, $content)
         {
             $result = explode($search, $content);
             return $result[0];
         }
 
-    public function deleteBefore($search, $content)
+    protected function deleteBefore($search, $content)
         {
             $result = explode($search, $content);
             return $result[1];
@@ -64,8 +64,5 @@ class Total
 //      $c[$i] = deleteAfter('</a>', $c[$i]);
 // }
 // var_dump($c);
-
-
-
 
 ?>

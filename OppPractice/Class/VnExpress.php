@@ -2,12 +2,12 @@
 include('Total.php');
 class VnExpress extends Total
 {
-    public $search1 = 'class="title_news_detail mb10"';
-    public $search2 = '</article>';
-    public $search3 = '>';
-    public $search4 = '<p class="Normal">';
-    public $search5 = '<table';
-    public $search6 = '/table>';
+    private $search1 = 'class="title_news_detail mb10"';
+    private $search2 = '</article>';
+    private $search3 = '>';
+    private $search4 = '<p class="Normal">';
+    private $search5 = '<table';
+    private $search6 = '/table>';
     
     public function deleteGarbage() {
         $b = parent::takeCodeWebsite();
@@ -39,7 +39,6 @@ class VnExpress extends Total
             $gString = str_replace( $h,' ', $gString);
             return $gString;
         }
-        
         return $gString;
     }
 }

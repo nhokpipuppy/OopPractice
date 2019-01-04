@@ -38,12 +38,11 @@
     } else {
         $c = new VnExpress();
         $c->url = $a;
+        // gán giá trị cho các biến title và content
         $title = $c->takeTitle();
-        // echo $title;
         $content = $c->takeContent();
-        // echo $content;
         $data = array(
-            'Title' => $title,
+            'Title'   => $title,
             'Content' => $content,
         );
         $d = new DB_driver();
@@ -59,12 +58,11 @@
    } else {
        $c = new VietnamNet();
        $c -> url = $a;
+       // gán giá trị cho các biến title và content
        $title = $c -> takeTitle();
-       // echo $title;
        $content = $c -> takeContent();
-       // echo $content;
        $data = array(
-           'Title' => $title,
+           'Title'   => $title,
            'Content' => $content,
        );
        $d = new DB_driver();

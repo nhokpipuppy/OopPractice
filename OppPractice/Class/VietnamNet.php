@@ -2,9 +2,9 @@
 include('Total.php');
 class VietnamNet extends Total 
 {
-    public $search1 = 'class="title f-22 c-3e">';
-    public $search2 = '<div class="inner-article"';
-    public $search3 = '</h1>';
+    private $search1 = 'class="title f-22 c-3e">';
+    private $search2 = '<div class="inner-article"';
+    private $search3 = '</h1>';
 
     public function deleteGarbage() {
         $b = parent::takeCodeWebsite();
@@ -12,7 +12,6 @@ class VietnamNet extends Total
         $c = parent::deleteBefore($this->search1, $b);
         // xóa đoạn code bên dưới nội dung
         $c = parent::deleteAfter($this->search2, $c);
-        // Lấy tiêu đề
         return $c;
     }
 
