@@ -1,7 +1,23 @@
 <?php
-    include('Class.php');
-    include('DB_driver.php');
+    include('__autoload.php');
 ?>
+<table border="1">
+    <tr>
+         <td style=" text-align:center; font-weight:bold; color: blue;">Mot so link test</td>
+    </tr>
+    <tr>
+         <td>https://vietnamnet.vn/vn/thoi-su/chinh-tri/giam-doc-so-gtvt-tp-hcm-duoc-bo-nhiem-lam-truong-ban-quan-ly-duong-sat-do-thi-499478.html</td>
+    </tr>
+    <tr>
+         <td>https://vnexpress.net/thoi-su/ong-bui-xuan-cuong-quay-lai-lam-truong-ban-quan-ly-duong-sat-do-thi-tp-hcm-3863288.html</td>
+    </tr>
+    <tr>
+         <td>https://vnexpress.net/kinh-doanh/chung-khoan-my-lao-doc-vi-apple-3863326.html</td>
+    </tr>
+    <tr>
+         <td>https://vnexpress.net/the-gioi/my-canh-bao-cong-dan-than-trong-khi-toi-trung-quoc-3863310.html</td>
+    </tr>
+</table>
 <form action="" method="post">
     <input type="text" name='linkVnExpress' placeholder='Nhập url VnExpress tại đây' >
     <input type="submit" name='submit1' value='Tách Dữ liệu'>
