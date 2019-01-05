@@ -16,6 +16,7 @@
                 $sql = "SELECT * FROM $table WHERE Id = $id";
                 $a = new WordWithDatabase();
                 $b = $a -> getRow($sql);
+                // show data
                 echo '<div class="news">';
                 echo "<h1>".$b['Title']."</h1>";
                 echo "<p style='text-indent: 20px;'>".$b['Content']."</p>";

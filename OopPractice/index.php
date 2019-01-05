@@ -50,7 +50,7 @@
     if ($b === false) {
         $b = strpos($a, 'https://vietnamnet.vn/');
         if ($b === false) {
-            echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ trang 2 trang vnexpress.net và vietnamnet.vn</span>';
+            echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ 2 trang vnexpress.net và vietnamnet.vn</span>';
         } else {
             $c = new VietnamNet();
             $c -> url = $a;

@@ -3,8 +3,6 @@ class WordWithDatabase
 {
     // Biến lưu trữ kết nối
     private $__conn;
-     // $link= new mysqli('localhost', 'root', '', 'qlsv') or die ('Lỗi kết nối');
-
     // Hàm Kết Nối
     public function connect()
     {
@@ -12,13 +10,8 @@ class WordWithDatabase
         if (!$this->__conn){
             // Kết nối
             $this->__conn = new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
-            // Xử lý truy vấn UTF8 để tránh lỗi font
-            
-            // mysqli_query($this->__conn, 'SET NAMES UTF8');
+            // Để tránh lỗi font 
             $this->__conn->set_charset("utf8");
-            //mysqli_set_charset($this->__conn,"utf8");
-            // mysqli_query($this->__conn, "SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8'");
-            // mysqli_query($this->__conn,'UTF8');
         }
     }
  
@@ -35,12 +28,10 @@ class WordWithDatabase
     {
         // Kết nối
         $this->connect();
-        
         // Lưu trữ danh sách field
         $field_list = '';
         // Lưu trữ danh sách giá trị tương ứng với field
         $value_list = '';
- 
         // Lặp qua data
         foreach ($data as $key => $value){
             $field_list .= ",$key";
@@ -85,16 +76,13 @@ class WordWithDatabase
     {
         // Kết nối
         $this->connect();
-        // $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
         $result = mysqli_query($this->__conn, $sql);
-        //var_dump($result);
         if (!$result){
             die ('Câu truy vấn bị sai');
         }
         $return = array();
         // Lặp qua kết quả để đưa vào mảng
         while ($row = mysqli_fetch_assoc($result)){
-            // var_dump (mb_check_encoding($row['Title']));
             $return[] = $row;
         }
         
@@ -102,6 +90,7 @@ class WordWithDatabase
         mysqli_free_result($result);
         return $return;
     }
+
     // ham đếm để trong trg hợp xét xem dữ liệu đã tồn tại hay chưa nếu tồn tại >0 chưa thì < 0
     public function numRow($sql){
         $this->connect();
@@ -110,13 +99,12 @@ class WordWithDatabase
         $num_row=mysqli_num_rows($result);
         return $num_row;
     }
- 
+
     // Hàm lấy 1 record dùng trong trường hợp lấy chi tiết tin
     public function getRow($sql)
     {
         // Kết nối
         $this->connect();
-         // $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
         $result = mysqli_query($this->__conn, $sql);
         if (!$result){
             die ('Câu truy vấn bị sai');
@@ -130,6 +118,5 @@ class WordWithDatabase
         return false;
     }
 }
-
 
 ?>
