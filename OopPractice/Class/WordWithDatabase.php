@@ -107,7 +107,7 @@ class WordWithDatabase
         $this->connect();
         $result = mysqli_query($this->__conn, $sql);
         if (!$result){
-            die ('Câu truy vấn bị sai');
+            return 'ERROR';
         }
         $row = mysqli_fetch_assoc($result);
         // Xóa kết quả khỏi bộ nhớ

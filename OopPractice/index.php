@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./Css/CssIndex.css">
+    <link rel="stylesheet" href="./Css/CssIndex.css?v=<?php echo time()?>">
 </head>
 <body>
 <table class="link" border="1" style="border-collapse:collapse; width:900px;margin:auto">
@@ -39,7 +39,7 @@
 </table>
 
 <form action="" method="post" style="margin-top:20px;text-align:center;" >
-    <input type="text" style={background:red} name='link' placeholder='Nhập url VnExpress tại đây' >
+    <input type="text" style={background:red} name='link' placeholder='Nhập url tại đây' >
     <input type="submit" name='submit' value='Tách Dữ liệu'>
 </form>
 
@@ -57,12 +57,20 @@
             // gán giá trị cho các biến title và content
             $title = $c -> takeTitle();
             $content = $c -> takeContent();
-            $data = array(
-                'Title'   => $title,
-                'Content' => $content,
-            );
-            $d = new WordWithDatabase();
-            $d -> insert('data_vietnamnet', $data);
+            // kiểm tra xem dữ liệu này đã được lưu chưa
+            $sql1 = "SELECT Id FROM data_vietnamnet WHERE Title = '$title' ";
+            $test = new WordWithDatabase();
+            if ($test -> getRow($sql1) == false) {
+                $data = array(
+                    'Title'   => $title,
+                    'Content' => $content,
+                );
+                $d = new WordWithDatabase();
+                $d -> insert('data_vietnamnet', $data);
+                '<span>Success</span>';
+            } else {
+                echo '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
+            }
             }
      } else {
         $c = new VnExpress();
@@ -70,13 +78,20 @@
         // gán giá trị cho các biến title và content
         $title = $c->takeTitle();
         $content = $c->takeContent();
-        $data = array(
-            'Title'   => $title,
-            'Content' => $content,
-        );
-        // var_dump($content);
-        $d = new WordWithDatabase();
-        $d->insert('data_vnexpress', $data);
+        // kiểm tra xem dữ liệu đã tồn tại hay chưa
+        $sql2 = "SELECT Id FROM data_vnexpress WHERE Title = '$title' ";
+            $test = new WordWithDatabase();
+            if ($test -> getRow($sql2) == false) {
+                $data = array(
+                    'Title'   => $title,
+                    'Content' => $content,
+                );
+                $d = new WordWithDatabase();
+                $d -> insert('data_vnexpress', $data);
+                echo '<span>Success</span>';
+            } else {
+                echo '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
+            }
             }
     } 
 ?>
@@ -134,4 +149,3 @@
 </table>
 </body>
 </html>
-
