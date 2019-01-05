@@ -1,11 +1,13 @@
 <?php
     include('__autoload.php');
+    header('Content-type: text/html; charset=UTF-8') ;
+    ini_set("default_charset", 'utf-8');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <!-- <meta charset="UTF-8"> -->
+
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -34,9 +36,21 @@
             cursor: pointer;
         }
         .show_data {
-            width:700px;
+            width:800px;
             margin:auto;
            margin-top:20px;
+        }
+        .show_data tr td:nth-of-type(1) {
+            width:30px;
+            text-align:center;
+        }
+        .show_data tr td:nth-of-type(2) {
+            width:600px;
+            
+        }
+        .show_data tr td:nth-of-type(3) {
+            
+            text-align:center;
         }
 
     </style>
@@ -66,7 +80,7 @@
     </tr>
 </table>
 
-<form action="" method="post" style="margin-top:20px;text-align:center;" accept-charset="ISO-8859-1">
+<form action="" method="post" style="margin-top:20px;text-align:center;" >
     <input type="text" style={background:red} name='link' placeholder='Nhập url VnExpress tại đây' >
     <input type="submit" name='submit' value='Tách Dữ liệu'>
 </form>
@@ -109,10 +123,6 @@
         $d->insert('data_vnexpress', $data);
             }
     } 
- 
-
-
-
 ?>
 
 <table class="show_data" border='1' style="border-collapse:collapse">
@@ -127,13 +137,15 @@
     <?php
          $e = new WordWithDatabase();
          $sql1 = 'SELECT * FROM data_vietnamnet';
-         $e->getList($sql1);
+         $x=$e->getList($sql1);
+//  var_dump($x);die();
+            // release data
          foreach($e->getList($sql1) as $key=>$value)
          {
              echo '<tr>';
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"ShowContent.php?id=".$value['Id']."\">Show Content</a></td></tr>";
+             echo "<td><a href=\"ShowContent.php?table=data_vietnamnet&id=".$value['Id']."\">Show Content</a></td></tr>";
          }
     ?>
 </table>
@@ -156,7 +168,7 @@
              echo '<tr>';
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"ShowContent.php?id=".$value['Id']."\">Show Content</a></td></tr>";
+             echo "<td><a href=\"ShowContent.php?table=data_vnexpress&id=".$value['Id']."\">Show Content</a></td></tr>";
          }
     ?>
 </table>
