@@ -65,10 +65,8 @@ class WordWithDatabase
             //mysql_escape_string($value) để trong trg hợp giá trị có những ký tự đặc biệt thì nó 
             //sẽ thêm \ vào trk ký tự đó để ký tự đó đc nhận vào và ko gây ra lỗi ví dụ như những ký tự " ' sẽ gây hiểu lầm về kết thúc chuỗi nên cần dấu\ ở trk nó
         }
- 
         // Vì sau vòng lặp biến $sql sẽ thừa một dấu , nên ta sẽ dùng hàm trim để xóa đi
         $sql = 'UPDATE '.$table. ' SET '.trim($sql, ',').' WHERE '.$where;
- 
         return mysqli_query($this->__conn, $sql);
     }
  
