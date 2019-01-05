@@ -3,6 +3,9 @@
     margin         : 0;
     padding        : 0;
 }
+body {
+    font-family: arial;
+}
 .box {
     width:700px;
     margin:auto;
@@ -12,10 +15,15 @@
 }
 h1 {
     text-align:center;
+    margin: 10px 0;
 }
 .back {
     display: flex;
     justify-content: flex-end;
+}
+p {
+    text-align: justify;
+    line-height: 25px;
 }
 .back a {
     text-decoration:none;
@@ -23,5 +31,5 @@ h1 {
     padding:5px;
     border-radius:10px;
     color:yellow;
-    margin-bottom:40px;
+    margin:20px 0 40px 0;
 }
