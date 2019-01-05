@@ -11,49 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-        .link tr td {
-            padding:5px 20px;
-        }
-        td {
-            padding:5px 10px;
-           
-        }
-        input[type="text"] {
-            background: lightblue;
-            outline: none;
-            border: 1px solid #64a7bd;
-            padding: 5px;
-            border-radius: 7px;
-            width: 430px;
-        }
-        input[type="submit"] {
-            border: 1px solid red;
-            padding: 5px;
-            border-radius: 6px;
-            background: #dc1b1b;
-            color: white;
-            cursor: pointer;
-        }
-        .show_data {
-            width:800px;
-            margin:auto;
-           margin-top:20px;
-        }
-        .show_data tr td:nth-of-type(1) {
-            width:30px;
-            text-align:center;
-        }
-        .show_data tr td:nth-of-type(2) {
-            width:600px;
-            
-        }
-        .show_data tr td:nth-of-type(3) {
-            
-            text-align:center;
-        }
-
-    </style>
+    <link rel="stylesheet" href="./Css/CssIndex.css">
 </head>
 <body>
 <table class="link" border="1" style="border-collapse:collapse; width:900px;margin:auto">
@@ -85,8 +43,6 @@
     <input type="submit" name='submit' value='Tách Dữ liệu'>
 </form>
 
-
-
 <?php
  if (isset($_POST['submit'])){
      $a = $_POST['link'];
@@ -94,7 +50,7 @@
     if ($b === false) {
         $b = strpos($a, 'https://vietnamnet.vn/');
         if ($b === false) {
-            echo '<span style="color:red;font-weight:bold">Link bạn nhập không hợp lệ. Bạn phải nhập link từ trang 2 trang vnexpress.net và vietnamnet.vn</span>';
+            echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ trang 2 trang vnexpress.net và vietnamnet.vn</span>';
         } else {
             $c = new VietnamNet();
             $c -> url = $a;
@@ -127,12 +83,13 @@
 
 <table class="show_data" border='1' style="border-collapse:collapse">
     <tr style="text-align:center;font-size:25px;font-weight:bold;">
-        <td colspan='3'>Data VietnamNet </td>
+        <td colspan='4'>Data VietnamNet </td>
     </tr>
     <tr style="text-align:center;">
         <td >ID</td>
         <td >Title</td>
         <td>Content</td>
+        <td>Delete</td>
     </tr>
     <?php
          $e = new WordWithDatabase();
@@ -145,19 +102,21 @@
              echo '<tr>';
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"ShowContent.php?table=data_vietnamnet&id=".$value['Id']."\">Show Content</a></td></tr>";
+             echo "<td><a href=\"./Action/ShowContent.php?table=data_vietnamnet&id=".$value['Id']."\">Show Content</a></td>";
+             echo "<td><a href=\"./Action/DeleteNews.php?table=data_vietnamnet&id=".$value['Id']."\">Xóa bài</a></td></tr>";
          }
     ?>
 </table>
 
 <table class="show_data" border='1' style="border-collapse:collapse">
     <tr style="text-align:center;font-size:25px;font-weight:bold;">
-        <td colspan='3'>Data VnExpress </td>
+        <td colspan='4'>Data VnExpress </td>
     </tr>
     <tr style="text-align:center;">
         <td >ID</td>
         <td >Title</td>
         <td>Content</td>
+        <td>Delete</td>
     </tr>
     <?php
          $e = new WordWithDatabase();
@@ -168,7 +127,8 @@
              echo '<tr>';
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"ShowContent.php?table=data_vnexpress&id=".$value['Id']."\">Show Content</a></td></tr>";
+             echo "<td><a href=\"./Action/ShowContent.php?table=data_vnexpress&id=".$value['Id']."\">Show Content</a></td>";
+             echo "<td><a href=\"./Action/DeleteNews.php?table=data_vnexpress&id=".$value['Id']."\">Xóa bài</a></td></tr>";
          }
     ?>
 </table>
