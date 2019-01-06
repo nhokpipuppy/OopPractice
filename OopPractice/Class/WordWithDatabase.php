@@ -9,7 +9,7 @@ class WordWithDatabase
         // Nếu chưa kết nối thì thực hiện kết nối
         if (!$this->__conn){
             // Kết nối
-            $this->__conn = new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
+            $this->__conn = new mysqli('localhost', 'root', '123456', 'ControlData') or die ('Lỗi kết nối');
             // Để tránh lỗi font 
             $this->__conn->set_charset("utf8");
         }
@@ -94,7 +94,7 @@ class WordWithDatabase
     // ham đếm để trong trg hợp xét xem dữ liệu đã tồn tại hay chưa nếu tồn tại >0 chưa thì < 0
     public function numRow($sql){
         $this->connect();
-        $link= new mysqli('localhost', 'root', '', 'controldata') or die ('Lỗi kết nối');
+        $link= new mysqli('localhost', 'root', '', 'ControlData') or die ('Lỗi kết nối');
         $result=mysqli_query($link,$sql);
         $num_row=mysqli_num_rows($result);
         return $num_row;
