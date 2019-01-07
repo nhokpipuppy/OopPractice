@@ -1,6 +1,7 @@
 <?php
-    include('__autoload.php');
-    include('Action/Function.php');
+    include ('__autoload.php');
+    include ('Action/Function.php');
+    require_once('application/config/config.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,16 +54,20 @@
     if ($b === false) {
         $b = strpos($a, 'https://vietnamnet.vn/');
         if ($b === false) {
-            echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ 2 trang vnexpress.net và vietnamnet.vn</span>';
+            echo ERROR;
+                die();
         } else {
-            echo insert_data('data_vietnamnet', 'VietnamNet');
+            $zz = new Db();
+            echo $zz -> insert('data_vietnamnet', $a, 'VietnamNet');
             }
      } else {
-        echo insert_data('data_vnexpress', 'VnExpress');
+        $zz = new Db();
+            echo $zz -> insert('data_vnexpress', $a, 'VnExpress');
             }
     } ;
     show_data('data_vietnamnet', 'Data VietnamNet');
     show_data('data_vnexpress', 'Data VnExpress');
 ?>
+
 </body>
 </html>
