@@ -40,7 +40,6 @@
     <input type="text" style={background:red} name='link' placeholder='Nhập url tại đây' >
     <input type="submit" name='submit' value='Tách Dữ liệu'>
 </form>
-
 <?php
 
  if (isset($_POST['submit'])){
@@ -56,11 +55,7 @@
      } else {
         echo insertData('data_vnexpress', 'VnExpress');
             }
-    } 
-?>
-
-<?php 
-    
+    } ;
     showData('data_vietnamnet', 'Data VietnamNet');
     showData('data_vnexpress', 'Data VnExpress');
 ?>
