@@ -5,13 +5,14 @@
 }
 body {
     font-family: arial;
+    width:900px;
+    margin:auto;
 }
 .link tr td {
     padding:5px 20px;
 }
 td {
     padding:5px 10px;
-   
 }
 input[type="text"] {
     background: lightblue;
@@ -63,3 +64,38 @@ span {
     margin-top:10px;
 }
 
+.box {
+    width:700px;
+    margin:auto;
+}
+.news {
+    width:100%;
+}
+h1 {
+    text-align:center;
+    margin: 10px 0;
+}
+.back {
+    display: flex;
+    justify-content: flex-end;
+}
+p {
+    text-align: justify;
+    line-height: 25px;
+}
+.back a {
+    text-decoration:none;
+    background: green;
+    padding:5px;
+    border-radius:10px;
+    color:yellow;
+    margin:20px 0 40px 0;
+}
+.error_link {
+    color:red;
+    text-align: center;
+    width:500px;
+    margin:auto;
+    font-weight:bold;
+    font-size: 17px;
+}
