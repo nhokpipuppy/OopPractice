@@ -1,8 +1,6 @@
 <?php
-class TakeCode
+class BaseCrawler
 {
-    public $url;
-    
     protected function takeCodeWebsite()
     {
         $ch = curl_init();
@@ -26,7 +24,12 @@ class TakeCode
     protected function deleteBefore($search, $content)
         {
             $result = explode($search, $content);
-            return $result[1];
+            if (isset($result[1])) {
+                return $result[1];
+            } else {
+                return "Error";
+            }
+            
         }
 }
 ?>
