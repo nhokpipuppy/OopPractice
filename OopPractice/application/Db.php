@@ -1,7 +1,5 @@
 <?php 
-include ('config/config.php');
-// include ('VietnamNet.php');
-// include ('VnExpress.php');
+require_once ('config/config.php');
 class Db 
 {
     // public $url = 'ok';
@@ -28,13 +26,22 @@ class Db
     }
  
     // Hàm Insert add
-    public function insert($table, $data) //data sẽ ở dạng array
+    public function insert($table, $a, $className) //data sẽ ở dạng array
     {
-        // Kết nối
-        // $this->connect();
-        // Lưu trữ danh sách field
-        // $this ->getRow($sql1);
-        $field_list = '';
+        $c = new $className();
+        $c -> url = $a;
+        // gán giá trị cho các biến title và content
+        $title = $c -> takeTitle();
+        $content = $c -> takeContent();
+        // kiểm tra xem dữ liệu này đã được lưu chưa
+        $sql1 = "SELECT Id FROM $table WHERE Title = '$title' ";
+        $test = new Db();
+        if ($test -> getRow($sql1) == false) {
+            $data = array(
+                'Title'   => $title,
+                'Content' => $content,
+            );
+            $field_list = '';
         // Lưu trữ danh sách giá trị tương ứng với field
         $value_list = '';
         // Lặp qua data
@@ -42,11 +49,14 @@ class Db
             $field_list .= ",$key";
             $value_list .= ",'".addslashes($value)."'";
         }
-        // var_dump($value_list.'thấy chưa');
         // Vì sau vòng lặp các biến $field_list và $value_list sẽ thừa một dấu , nên ta sẽ dùng hàm trim để xóa đi
         $sql = 'INSERT INTO '.$table. '('.trim($field_list, ',').') VALUES (N'.trim($value_list, ',').')';
  
-        return mysqli_query($this->__conn, $sql);
+         mysqli_query($this->__conn, $sql);
+            return '<span>Success</span>';
+        } else {
+            return '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
+        } 
     }
  
     // Hàm Update edit
