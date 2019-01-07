@@ -1,5 +1,7 @@
 <?php 
 include ('config/config.php');
+// include ('VietnamNet.php');
+// include ('VnExpress.php');
 class Db 
 {
     // public $url = 'ok';
@@ -31,6 +33,7 @@ class Db
         // Kết nối
         // $this->connect();
         // Lưu trữ danh sách field
+        // $this ->getRow($sql1);
         $field_list = '';
         // Lưu trữ danh sách giá trị tương ứng với field
         $value_list = '';

@@ -1,6 +1,7 @@
 <?php
 class BaseCrawler
-{
+{   
+    public $url;
     protected function takeCodeWebsite()
     {
         $ch = curl_init();
