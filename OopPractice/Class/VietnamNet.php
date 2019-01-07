@@ -1,6 +1,6 @@
 <?php
-include('TakeCode.php');
-class VietnamNet extends TakeCode
+include('BaseCrawler.php');
+class VietnamNet extends BaseCrawler
 {
     private $__search1 = 'class="title f-22 c-3e">';
     private $__search2 = '<div class="inner-article"';
@@ -9,10 +9,18 @@ class VietnamNet extends TakeCode
     private function __deleteGarbage() {
         $b = parent::takeCodeWebsite();
         // xóa đoạn code bên trên tiêu đề
-        $c = parent::deleteBefore($this->__search1, $b);
+        $b = parent::deleteBefore($this->__search1, $b);
+        if ($b == 'Error') {
+            echo '<p class="error_link">Add data false. Url phải là link 1 bài báo trong 2 trang yêu cầu </p>';
+            echo '<div class="back" style="text-align:center">
+                      <a href="index.php">Quay lại trang chủ</a>
+                  </div>';
+            die();
+            // header('location:Action/Error.php');
+        }
         // xóa đoạn code bên dưới nội dung
-        $c = parent::deleteAfter($this->__search2, $c);
-        return $c;
+        $b = parent::deleteAfter($this->__search2, $b);
+        return $b;
     }
 
     public function takeTitle()
