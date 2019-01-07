@@ -1,22 +1,24 @@
-<?php
-class WordWithDatabase
+<?php 
+include ('config/config.php');
+class Db 
 {
+    // public $url = 'ok';
     // Biến lưu trữ kết nối
     private $__conn;
     // Hàm Kết Nối
-    public function connect()
+     function __construct()
     {
         // Nếu chưa kết nối thì thực hiện kết nối
         if (!$this->__conn){
             // Kết nối
-            $this->__conn = new mysqli('localhost', 'root', '123456', 'ControlData') or die ('Lỗi kết nối');
+            $this->__conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME) or die ('Lỗi kết nối');
             // Để tránh lỗi font 
             $this->__conn->set_charset("utf8");
         }
     }
  
     // Hàm Ngắt Kết Nối
-    public function disconnect(){
+    public function __destruct(){
         // Nếu đang kết nối thì ngắt
         if ($this->__conn){
             mysqli_close($this->__conn);
@@ -27,7 +29,7 @@ class WordWithDatabase
     public function insert($table, $data) //data sẽ ở dạng array
     {
         // Kết nối
-        $this->connect();
+        // $this->connect();
         // Lưu trữ danh sách field
         $field_list = '';
         // Lưu trữ danh sách giá trị tương ứng với field
@@ -48,7 +50,7 @@ class WordWithDatabase
     public function update($table, $data, $where)
     {
         // Kết nối
-        $this->connect();
+        // $this->connect();
         $sql = '';
         // Lặp qua data
         foreach ($data as $key => $value){
@@ -64,7 +66,7 @@ class WordWithDatabase
     // Hàm delete
     public function remove($table, $where){
         // Kết nối
-        $this->connect();
+        // $this->connect();
          
         // Delete
         $sql = "DELETE FROM $table WHERE $where";
@@ -75,7 +77,7 @@ class WordWithDatabase
     public function getList($sql)
     {
         // Kết nối
-        $this->connect();
+        // $this->connect();
         $result = mysqli_query($this->__conn, $sql);
         if (!$result){
             die ('Câu truy vấn bị sai');
@@ -93,7 +95,7 @@ class WordWithDatabase
 
     // ham đếm để trong trg hợp xét xem dữ liệu đã tồn tại hay chưa nếu tồn tại >0 chưa thì < 0
     public function numRow($sql){
-        $this->connect();
+        // $this->connect();
         $link= new mysqli('localhost', 'root', '', 'ControlData') or die ('Lỗi kết nối');
         $result=mysqli_query($link,$sql);
         $num_row=mysqli_num_rows($result);
@@ -104,7 +106,7 @@ class WordWithDatabase
     public function getRow($sql)
     {
         // Kết nối
-        $this->connect();
+        // $this->connect();
         $result = mysqli_query($this->__conn, $sql);
         if (!$result){
             return 'ERROR';

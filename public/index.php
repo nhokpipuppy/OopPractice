@@ -9,12 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./Css/CssIndex.css?v=<?php echo time()?>">
+    <link rel="stylesheet" href="./Css/style.css?v=<?php echo time()?>">
 </head>
 <body>
 <table class="link" border="1" style="border-collapse:collapse; width:900px;margin:auto">
     <tr>
-         <td style=" text-align:center; font-weight:bold; font-size:20px; color: blue;">Một số link test tham khảo</td>
+         <td style=" text-align:center; font-weight:bold; font-size:20px; color: blue;">Link Demo</td>
     </tr>
     <tr>
          <td>https://vietnamnet.vn/vn/thoi-su/chinh-tri/giam-doc-so-gtvt-tp-hcm-duoc-bo-nhiem-lam-truong-ban-quan-ly-duong-sat-do-thi-499478.html</td>
@@ -37,8 +37,13 @@
 </table>
 
 <form action="" method="post" style="margin-top:20px;text-align:center;" >
-    <input type="text" style={background:red} name='link' placeholder='Nhập url tại đây' >
-    <input type="submit" name='submit' value='Tách Dữ liệu'>
+    <input type="text" style={background:red} name='link' placeholder='Put Url here' >
+    <input type="submit" name='submit' value='Add data'>
+    <?php
+        if(!isset($_POST['submit'])) {
+            echo "<span>Lưu ý url phải là 1 bài báo ở 2 trang vnexpress.net và vietnamnet.vn </span>";
+        }
+    ?>
 </form>
 <?php
 
@@ -50,14 +55,14 @@
         if ($b === false) {
             echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ 2 trang vnexpress.net và vietnamnet.vn</span>';
         } else {
-            echo insertData('data_vietnamnet', 'VietnamNet');
+            echo insert_data('data_vietnamnet', 'VietnamNet');
             }
      } else {
-        echo insertData('data_vnexpress', 'VnExpress');
+        echo insert_data('data_vnexpress', 'VnExpress');
             }
     } ;
-    showData('data_vietnamnet', 'Data VietnamNet');
-    showData('data_vnexpress', 'Data VnExpress');
+    show_data('data_vietnamnet', 'Data VietnamNet');
+    show_data('data_vnexpress', 'Data VnExpress');
 ?>
 </body>
 </html>

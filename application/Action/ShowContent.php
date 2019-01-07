@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../Css/CssShowContent.css">
+    <link rel="stylesheet" href="../Css/style.css">
     <title>Document</title>
 </head>
 <body>
@@ -14,7 +14,7 @@
                 $table = $_GET['table'];
                 $id = $_GET['id'];
                 $sql = "SELECT * FROM $table WHERE Id = $id";
-                $a = new WordWithDatabase();
+                $a = new Db();
                 $b = $a -> getRow($sql);
                 // show data
                 echo '<div class="news">';
@@ -23,7 +23,6 @@
                 echo '</div>';
             }
         ?> 
-
         <div class="back" style="text-align:center">
             <a href="../index.php">Quay lại trang chủ</a>
         </div>

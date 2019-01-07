@@ -18,7 +18,15 @@ class BaseCrawler
     protected function deleteAfter($search, $content)
         {
             $result = explode($search, $content);
-            return $result[0];
+            if (isset($result[0])) {
+                return $result[0];
+            } else {
+                echo '<p class="error_link">Add data false. Url phải là link 1 bài báo trong 2 trang yêu cầu </p>';
+                echo '<div class="back" style="text-align:center">
+                        <a href="index.php">Quay lại trang chủ</a>
+                      </div>';
+                die();
+            }
         }
 
     protected function deleteBefore($search, $content)
@@ -27,7 +35,11 @@ class BaseCrawler
             if (isset($result[1])) {
                 return $result[1];
             } else {
-                return "Error";
+                echo '<p class="error_link">Add data false. Url phải là link 1 bài báo trong 2 trang yêu cầu </p>';
+                echo '<div class="back" style="text-align:center">
+                        <a href="index.php">Quay lại trang chủ</a>
+                     </div>';
+                die();
             }
             
         }

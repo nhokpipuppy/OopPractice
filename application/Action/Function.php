@@ -1,5 +1,5 @@
 <?php
-    function insertData($tableName, $className) 
+    function insert_data($tableName, $className) 
     {   
         global $a;
         $c = new $className();
@@ -9,13 +9,13 @@
         $content = $c -> takeContent();
         // kiểm tra xem dữ liệu này đã được lưu chưa
         $sql1 = "SELECT Id FROM $tableName WHERE Title = '$title' ";
-        $test = new WordWithDatabase();
+        $test = new Db();
         if ($test -> getRow($sql1) == false) {
             $data = array(
                 'Title'   => $title,
                 'Content' => $content,
             );
-            $d = new WordWithDatabase();
+            $d = new Db();
             $d -> insert($tableName, $data);
             return '<span>Success</span>';
         } else {
@@ -23,7 +23,7 @@
         }         
     };
 
-    function showData($tableName, $tableTitle)
+    function show_data($tableName, $tableTitle)
     {
         echo  "<table class=\"show_data\" border='1' style=\"border-collapse:collapse\">
         <tr style=\"text-align:center;font-size:25px;font-weight:bold;\">
@@ -35,7 +35,7 @@
             <td>Content</td>
             <td>Delete</td>
         </tr>";
-        $e = new WordWithDatabase();
+        $e = new Db();
          $sql1 = "SELECT * FROM $tableName";
          $x=$e->getList($sql1);
          foreach($e->getList($sql1) as $key=>$value)
@@ -44,7 +44,7 @@
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
              echo "<td><a href=\"./Action/ShowContent.php?table=".$tableName."&id=".$value['Id']."\">Show Content</a></td>";
-             echo "<td><a href=\"./Action/DeleteNews.php?table=".$tableName."&id=".$value['Id']."\">Xóa bài</a></td></tr>";
+             echo "<td><a href=\"./Action/DeleteNews.php?table=".$tableName."&id=".$value['Id']."\">Delete</a></td></tr>";
          }
         echo '</table>';
     };
