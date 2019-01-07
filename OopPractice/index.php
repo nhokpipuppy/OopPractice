@@ -44,6 +44,29 @@
 </form>
 
 <?php
+function showHTML($k, $l) 
+{   
+    global $a;
+    $c = new $l();
+    $c -> url = $a;
+    // gán giá trị cho các biến title và content
+    $title = $c -> takeTitle();
+    $content = $c -> takeContent();
+    // kiểm tra xem dữ liệu này đã được lưu chưa
+    $sql1 = "SELECT Id FROM $k WHERE Title = '$title' ";
+    $test = new WordWithDatabase();
+    if ($test -> getRow($sql1) == false) {
+        $data = array(
+            'Title'   => $title,
+            'Content' => $content,
+        );
+        $d = new WordWithDatabase();
+        $d -> insert($k, $data);
+        return '<span>Success</span>';
+    } else {
+        return '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
+    }         
+};
  if (isset($_POST['submit'])){
      $a = $_POST['link'];
      $b = strpos($a, 'https://vnexpress.net/');
@@ -52,46 +75,10 @@
         if ($b === false) {
             echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ 2 trang vnexpress.net và vietnamnet.vn</span>';
         } else {
-            $c = new VietnamNet();
-            $c -> url = $a;
-            // gán giá trị cho các biến title và content
-            $title = $c -> takeTitle();
-            $content = $c -> takeContent();
-            // kiểm tra xem dữ liệu này đã được lưu chưa
-            $sql1 = "SELECT Id FROM data_vietnamnet WHERE Title = '$title' ";
-            $test = new WordWithDatabase();
-            if ($test -> getRow($sql1) == false) {
-                $data = array(
-                    'Title'   => $title,
-                    'Content' => $content,
-                );
-                $d = new WordWithDatabase();
-                $d -> insert('data_vietnamnet', $data);
-                '<span>Success</span>';
-            } else {
-                echo '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
-            }
+            echo showHTML('data_vietnamnet', 'VietnamNet');
             }
      } else {
-        $c = new VnExpress();
-        $c->url = $a;
-        // gán giá trị cho các biến title và content
-        $title = $c->takeTitle();
-        $content = $c->takeContent();
-        // kiểm tra xem dữ liệu đã tồn tại hay chưa
-        $sql2 = "SELECT Id FROM data_vnexpress WHERE Title = '$title' ";
-            $test = new WordWithDatabase();
-            if ($test -> getRow($sql2) == false) {
-                $data = array(
-                    'Title'   => $title,
-                    'Content' => $content,
-                );
-                $d = new WordWithDatabase();
-                $d -> insert('data_vnexpress', $data);
-                echo '<span>Success</span>';
-            } else {
-                echo '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
-            }
+        echo showHTML('data_vnexpress', 'VnExpress');
             }
     } 
 ?>
@@ -110,8 +97,6 @@
          $e = new WordWithDatabase();
          $sql1 = 'SELECT * FROM data_vietnamnet';
          $x=$e->getList($sql1);
-//  var_dump($x);die();
-            // release data
          foreach($e->getList($sql1) as $key=>$value)
          {
              echo '<tr>';
