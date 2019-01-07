@@ -1,4 +1,5 @@
 <?php
+require_once('config/config.php');
 class BaseCrawler
 {   
     public $url;
@@ -17,29 +18,25 @@ class BaseCrawler
     }
 
     protected function deleteAfter($search, $content)
-        {
+        {   
+         
             $result = explode($search, $content);
             if (isset($result[0])) {
                 return $result[0];
             } else {
-                echo '<p class="error_link">Add data false. Url phải là link 1 bài báo trong 2 trang yêu cầu </p>';
-                echo '<div class="back" style="text-align:center">
-                        <a href="index.php">Quay lại trang chủ</a>
-                      </div>';
+                echo ERROR;
                 die();
             }
         }
 
     protected function deleteBefore($search, $content)
-        {
+        {   
+            
             $result = explode($search, $content);
             if (isset($result[1])) {
                 return $result[1];
             } else {
-                echo '<p class="error_link">Add data false. Url phải là link 1 bài báo trong 2 trang yêu cầu </p>';
-                echo '<div class="back" style="text-align:center">
-                        <a href="index.php">Quay lại trang chủ</a>
-                     </div>';
+                echo ERROR;
                 die();
             }
             
