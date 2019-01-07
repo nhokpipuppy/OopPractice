@@ -1,12 +1,10 @@
 <?php
     include('__autoload.php');
-    header('Content-type: text/html; charset=UTF-8') ;
-    ini_set("default_charset", 'utf-8');
+    include('Action/Function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -44,29 +42,7 @@
 </form>
 
 <?php
-function showHTML($k, $l) 
-{   
-    global $a;
-    $c = new $l();
-    $c -> url = $a;
-    // gán giá trị cho các biến title và content
-    $title = $c -> takeTitle();
-    $content = $c -> takeContent();
-    // kiểm tra xem dữ liệu này đã được lưu chưa
-    $sql1 = "SELECT Id FROM $k WHERE Title = '$title' ";
-    $test = new WordWithDatabase();
-    if ($test -> getRow($sql1) == false) {
-        $data = array(
-            'Title'   => $title,
-            'Content' => $content,
-        );
-        $d = new WordWithDatabase();
-        $d -> insert($k, $data);
-        return '<span>Success</span>';
-    } else {
-        return '<span>Dữ liệu đã tồn tại, mời bạn nhập dữ liệu mới</span>';
-    }         
-};
+
  if (isset($_POST['submit'])){
      $a = $_POST['link'];
      $b = strpos($a, 'https://vnexpress.net/');
@@ -75,62 +51,18 @@ function showHTML($k, $l)
         if ($b === false) {
             echo '<span>Link bạn nhập không hợp lệ. Bạn phải nhập link từ 2 trang vnexpress.net và vietnamnet.vn</span>';
         } else {
-            echo showHTML('data_vietnamnet', 'VietnamNet');
+            echo insertData('data_vietnamnet', 'VietnamNet');
             }
      } else {
-        echo showHTML('data_vnexpress', 'VnExpress');
+        echo insertData('data_vnexpress', 'VnExpress');
             }
     } 
 ?>
 
-<table class="show_data" border='1' style="border-collapse:collapse">
-    <tr style="text-align:center;font-size:25px;font-weight:bold;">
-        <td colspan='4'>Data VietnamNet </td>
-    </tr>
-    <tr style="text-align:center;">
-        <td >ID</td>
-        <td >Title</td>
-        <td>Content</td>
-        <td>Delete</td>
-    </tr>
-    <?php
-         $e = new WordWithDatabase();
-         $sql1 = 'SELECT * FROM data_vietnamnet';
-         $x=$e->getList($sql1);
-         foreach($e->getList($sql1) as $key=>$value)
-         {
-             echo '<tr>';
-             echo "<td>".$value['Id']."</td>";
-             echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"./Action/ShowContent.php?table=data_vietnamnet&id=".$value['Id']."\">Show Content</a></td>";
-             echo "<td><a href=\"./Action/DeleteNews.php?table=data_vietnamnet&id=".$value['Id']."\">Xóa bài</a></td></tr>";
-         }
-    ?>
-</table>
-
-<table class="show_data" border='1' style="border-collapse:collapse">
-    <tr style="text-align:center;font-size:25px;font-weight:bold;">
-        <td colspan='4'>Data VnExpress </td>
-    </tr>
-    <tr style="text-align:center;">
-        <td >ID</td>
-        <td >Title</td>
-        <td>Content</td>
-        <td>Delete</td>
-    </tr>
-    <?php
-         $e = new WordWithDatabase();
-         $sql1 = 'SELECT * FROM data_vnexpress';
-         $e->getList($sql1);
-         foreach($e->getList($sql1) as $key=>$value)
-         {
-             echo '<tr>';
-             echo "<td>".$value['Id']."</td>";
-             echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"./Action/ShowContent.php?table=data_vnexpress&id=".$value['Id']."\">Show Content</a></td>";
-             echo "<td><a href=\"./Action/DeleteNews.php?table=data_vnexpress&id=".$value['Id']."\">Xóa bài</a></td></tr>";
-         }
-    ?>
-</table>
+<?php 
+    
+    showData('data_vietnamnet', 'Data VietnamNet');
+    showData('data_vnexpress', 'Data VnExpress');
+?>
 </body>
 </html>
