@@ -1,7 +1,8 @@
 <?php
     include ('__autoload.php');
-    include ('Action/Function.php');
+    include ('action/Function.php');
     require_once('application/config/config.php');
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="./Css/style.css?v=<?php echo time()?>">
+    <link rel="stylesheet" href="./css/style.css?v=<?php echo time()?>">
 </head>
 <body>
 <table class="link" border="1" style="border-collapse:collapse; width:900px;margin:auto">

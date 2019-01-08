@@ -43,8 +43,8 @@
              echo '<tr>';
              echo "<td>".$value['Id']."</td>";
              echo "<td>".$value['Title']."</td>";
-             echo "<td><a href=\"./Action/ShowContent.php?table=".$tableName."&id=".$value['Id']."\">Show Content</a></td>";
-             echo "<td><a href=\"./Action/DeleteNews.php?table=".$tableName."&id=".$value['Id']."\">Delete</a></td></tr>";
+             echo "<td><a href=\"./action/ShowContent.php?table=".$tableName."&id=".$value['Id']."\">Show Content</a></td>";
+             echo "<td><a href=\"./action/DeleteNews.php?table=".$tableName."&id=".$value['Id']."\">Delete</a></td></tr>";
          }
         echo '</table>';
     };
